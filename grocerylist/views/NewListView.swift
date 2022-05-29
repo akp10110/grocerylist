@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct NewListView: View {
+    @State private var addItemView: Bool = false
+    
     var body: some View {
-        VStack {
-            Text("New List").font(.title3).fontWeight(.bold).padding().frame(maxWidth: .infinity, alignment: .leading)
+        ZStack (alignment: .bottomTrailing) {
+            ItemsListView()
+            
+            AddItemButton()
+                .padding()
+                .onTapGesture {
+                    addItemView.toggle()
+                }
+
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color(hue: 0.401, saturation: 0.084, brightness: 0.954)/*@END_MENU_TOKEN@*/)
-        
+        .sheet(isPresented: $addItemView) {
+            AddItemView()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        .background(Color(hue: 0.401, saturation: 0.084, brightness: 0.954))
     }
 }
 

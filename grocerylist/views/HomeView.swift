@@ -16,16 +16,20 @@ struct HomeView: View {
                     .font(.title)
                     .padding(.all)
                 HStack(spacing: 30){
-                    Button("New List") {
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
-                    }.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                    Button() {
+                        if let window = UIApplication.shared.windows.first {
+                                window.rootViewController = UIHostingController(rootView: NewListView())
+                                window.makeKeyAndVisible()
+                            }
+                    } label: {
+                        Text("Add New")
+                    }
+                    .padding()
                     Button("Copy Prev") {
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                        
                     }.padding(.all)
                 }
-                
             }
-                    
         }
     }
 }
