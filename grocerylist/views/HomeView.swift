@@ -9,27 +9,25 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        ZStack {
-            Color.yellow
-            VStack {
-                Text("Welcome to Groceries List")
-                    .font(.title)
-                    .padding(.all)
-                HStack(spacing: 30){
-                    Button() {
-                        if let window = UIApplication.shared.windows.first {
-                                window.rootViewController = UIHostingController(rootView: NewListView())
-                                window.makeKeyAndVisible()
-                            }
-                    } label: {
-                        Text("Add New")
+        NavigationView {
+            ZStack {
+                Color.yellow
+                VStack {
+                    Text("Welcome to Groceries List")
+                        .font(.title)
+                        .padding(.all)
+                    HStack(spacing: 30){
+                        NavigationLink(destination: NewListView()) {
+                            Text("Add New")
+                                .padding()
+                        }
+                        Button("Copy Prev") {
+                            
+                        }.padding(.all)
                     }
-                    .padding()
-                    Button("Copy Prev") {
-                        
-                    }.padding(.all)
                 }
             }
+            .navigationBarTitle("Home")
         }
     }
 }
