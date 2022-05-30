@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var showNewView: Bool = false
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -17,13 +19,29 @@ struct HomeView: View {
                         .font(.title)
                         .padding(.all)
                     HStack(spacing: 30){
-                        NavigationLink(destination: NewListView()) {
-                            Text("Add New")
-                                .padding()
+                        NavigationLink(destination: NewListView(), isActive: $showNewView) {
+                            EmptyView()
                         }
-                        Button("Copy Prev") {
+                        
+                        Button() {
+                            self.showNewView = true
+                        } label: {
+                            Text("Add New")
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color(hue: 0.439, saturation: 0.573, brightness: 0.507))
+                        .cornerRadius(20)
+                        
+                        Button() {
                             
-                        }.padding(.all)
+                        } label: {
+                            Text("Copy Prev")
+                        }
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color(hue: 0.439, saturation: 0.573, brightness: 0.507))
+                        .cornerRadius(20)
                     }
                 }
             }
